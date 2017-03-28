@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="Model_Sipac_2" id="18bc2f2a" version="3.1.1">
+  <folder name="Business" id="c55b104f" type="business"/>
+  <folder name="Application" id="f4740c23" type="application"/>
+  <folder name="Technology" id="d30d4072" type="technology"/>
+  <folder name="Motivation" id="5a86e535" type="motivation">
+    <element xsi:type="archimate:Stakeholder" id="73c9261e" name="Gestor"/>
+    <element xsi:type="archimate:Driver" id="192abc86" name="Produção agrícola"/>
+    <element xsi:type="archimate:Assessment" id="067d6643" name="Acompanhamento por  data (ano/mes)"/>
+  </folder>
+  <folder name="Implementation &amp; Migration" id="013ca42e" type="implementation_migration"/>
+  <folder name="Connectors" id="912a6dfd" type="connectors"/>
+  <folder name="Relations" id="7df9654b" type="relations">
+    <element xsi:type="archimate:AssociationRelationship" id="6d2fe2e7" source="73c9261e" target="192abc86"/>
+    <element xsi:type="archimate:AssociationRelationship" id="6d10334f" source="192abc86" target="067d6643"/>
+  </folder>
+  <folder name="Views" id="2243898e" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" id="746b8a43" name="Default View">
+      <child xsi:type="archimate:DiagramObject" id="913cb377" textAlignment="2" archimateElement="73c9261e">
+        <bounds x="279" y="46" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="0785a4ce" source="913cb377" target="56369ac8" relationship="6d2fe2e7"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="56369ac8" textAlignment="2" targetConnections="0785a4ce" archimateElement="192abc86">
+        <bounds x="279" y="156" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="99f685b4" source="56369ac8" target="8b3fc475" relationship="6d10334f"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="8b3fc475" textAlignment="2" targetConnections="99f685b4" archimateElement="067d6643">
+        <bounds x="250" y="276" width="178" height="49"/>
+      </child>
+    </element>
+  </folder>
+</archimate:model>
