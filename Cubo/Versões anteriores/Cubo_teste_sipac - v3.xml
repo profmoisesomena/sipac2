@@ -1,0 +1,52 @@
+	<Schema name="Sipac 2 - v3">
+  <Cube name="Produ&#231;&#227;o Agricultura - 2" visible="true" cache="true" enabled="true">
+    <Table name="fato_producao" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_produto" highCardinality="false" name="Produto">
+      <Hierarchy visible="true" hasAll="true" primaryKey="produto_id">
+        <Table name="dim_produto" schema="public">
+        </Table>
+        <Level name="Grupo" visible="true" column="nome_grupo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Nome_Produto" visible="true" column="nome_produto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="municipio_id" highCardinality="false" name="Localiza&#231;ao">
+      <Hierarchy visible="true" hasAll="true" primaryKey="localizacao_id">
+        <Table name="dim_localizacao" schema="public">
+        </Table>
+        <Level name="Estado" visible="true" column="estado" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Mesorregi&#227;o" visible="true" column="meso" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Microrregi&#227;o" visible="true" column="micro" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Munic&#237;pio" visible="true" column="municipio" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="TimeDimension" visible="true" foreignKey="tempo_id" name="Data">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="dim_tempo" schema="public" alias="">
+        </Table>
+        <Level name="Ano" visible="true" column="ano" type="Integer" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        	<Annotations><Annotation name="AnalyzerDateFormat">[yyyy]</Annotation></Annotations>
+        </Level>
+        <Level name="M&#234;s" visible="true" column="mes" type="Integer" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+        	<Annotations><Annotation name="AnalyzerDateFormat">[yyyy].['QTR'q].[MMM]</Annotation></Annotations>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Produ&#231;&#227;o" column="producao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="&#193;rea Colhida" column="area_colhida" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="&#193;rea Plantada" column="area_plantada" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Irrigado" column="irrigado" datatype="String" aggregator="distinct count" visible="true">
+    </Measure>
+    <Measure name="&#193;rea em Forma&#231;&#227;o" column="area_em_formacao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
