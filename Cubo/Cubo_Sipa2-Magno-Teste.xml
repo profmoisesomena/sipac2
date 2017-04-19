@@ -30,6 +30,8 @@
       <Hierarchy name="Produto" visible="true" hasAll="true" primaryKey="id_produto" description="Dim_Produto">
         <Table name="dim_produto" schema="public" alias="Produto">
         </Table>
+        <Level name="Grupo" visible="true" column="nome_grupo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
         <Level name="Produto" visible="true" column="nome_produto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
