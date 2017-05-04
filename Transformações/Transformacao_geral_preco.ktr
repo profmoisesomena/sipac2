@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Transformacao_geral</name>
+    <name>Transformacao_geral_preco</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -444,7 +444,7 @@
     <database>Incaper</database>
     <port>5432</port>
     <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4aa1da379d0c3fd89</password>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff238bc0fb8c</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -461,14 +461,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>sipac_2v2</name>
+    <name>sipac2_olap</name>
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>sipac_2v2</database>
+    <database>sipac2_olap</database>
     <port>5432</port>
     <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4aa1da379d0c3fd89</password>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff238bc0fb8c</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -486,355 +486,93 @@
   </connection>
   <order>
     <hop>
-      <from>Table input 2</from>
-      <to>Select values 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 2</from>
-      <to>fato_producao</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unique rows</from>
+      <from>Unique rows mesano</from>
       <to>dim_tempo</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 2</from>
-      <to>Sort rows</to>
+      <from>Select values - converte mesano para number</from>
+      <to>Sort rows mesano</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows</from>
-      <to>Unique rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Table input 2</from>
-      <to>Sort rows 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 2</from>
-      <to>Unique rows 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unique rows 2</from>
-      <to>dim_localizacao</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordena id_produto</from>
-      <to>Unique rows 2 2</to>
+      <from>Select values - converte mesano para number</from>
+      <to>fato_producao</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Table input 2</from>
-      <to>Ordena id_produto</to>
+      <to>Select values - converte mesano para number</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unique rows 2 2</from>
-      <to>dim_produto</to>
+      <from>Sort rows mesano</from>
+      <to>Unique rows mesano</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Table input 2</from>
+      <to>Sort rows municipio_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows municipio_id</from>
+      <to>Unique rows municipio_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows id_produto</from>
+      <to>Output table - dim_produto</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows municipio_id</from>
+      <to>Output Table - dim_localizacao</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows id_produto</from>
+      <to>Unique rows id_produto</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Table input 2</from>
+      <to>Sort rows id_produto</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>dim_tempo</from>
+      <to>Switch &#x2f; Case 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch &#x2f; Case 2</from>
+      <to>dim_tempo 12</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch &#x2f; Case 2</from>
+      <to>dim_tempo other</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>fato_producao</from>
+      <to>Switch &#x2f; Case 2 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch &#x2f; Case 2 2</from>
+      <to>fato_producao_mes12</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch &#x2f; Case 2 2</from>
+      <to>fato_producao_mes_others</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Ordena id_produto</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>id_produto</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>2</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>272</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Select values 2</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>mesano</name>
-        <rename>mesano</rename>
-        <type>Number</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>80</xloc>
-      <yloc>512</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Sort rows</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>mesano</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>2</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>512</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Sort rows 2</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>municipio_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>2</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>208</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Table input 2</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Incaper</connection>
-    <sql>select &#xa;	concat&#x28;	producao.mes,producao.ano&#x29; as mesano,&#xa;	producao.mes,&#xa;	producao.ano,&#xa;	producao.producao as quantidade_produzida, &#xa;	producao.area_plantada, &#xa;	producao.area_em_formacao, &#xa;	producao.area_colhida, &#xa;	producao.irrigado,&#xa;	produto.nome as nome_produto, &#xa;	produto.id as id_produto, &#xa;	produto.codigo as codigo_produto, &#xa;	grupo.nome_grupo,&#xa;	grupo.id as grupo_id, &#xa;	estado.id as estado_id, &#xa;	estado.nome as estado_nome, &#xa;	meso.nome as meso_nome, &#xa;	meso.id as meso_id,&#xa;	micro.id as micro_id, &#xa;	micro.nome as micro_nome, &#xa;	municipio.id as municipio_id, &#xa;	municipio.nome as municipio_nome&#xa;from agricultura_producao as producao&#xa;&#xa;INNER JOIN core_municipio as municipio &#xa;	ON&#x28;producao.municipio_id &#x3d; municipio.id&#x29;&#xa;&#xa;INNER JOIN core_microregiao as micro &#xa;	ON&#x28;municipio.microregiao_id &#x3d; micro.id&#x29;&#xa;&#xa;INNER JOIN core_mesoregiao as meso &#xa;	ON&#x28;micro.mesoregiao_id &#x3d; meso.id&#x29;&#xa;&#xa;INNER JOIN core_estado as estado &#xa;	ON&#x28;meso.estado_id &#x3d; estado.id&#x29;&#xa;&#xa;INNER JOIN agricultura_produto as produto &#xa;	ON&#x28;produto.id &#x3d; producao.produto_id&#x29;&#xa;&#xa;INNER JOIN agricultura_grupo as &#xa;	grupo ON&#x28;produto.grupo_id &#x3d; grupo.id&#x29;&#xa;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>80</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Unique rows</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <count_rows>N</count_rows>
-      <count_field/>
-      <reject_duplicate_row>N</reject_duplicate_row>
-      <error_description/>
-    <fields>      <field>        <name>mesano</name>
-        <case_insensitive>N</case_insensitive>
-        </field>      </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>512</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Unique rows 2</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <count_rows>N</count_rows>
-      <count_field/>
-      <reject_duplicate_row>N</reject_duplicate_row>
-      <error_description/>
-    <fields>      <field>        <name>municipio_id</name>
-        <case_insensitive>N</case_insensitive>
-        </field>      </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Unique rows 2 2</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <count_rows>N</count_rows>
-      <count_field/>
-      <reject_duplicate_row>N</reject_duplicate_row>
-      <error_description/>
-    <fields>      <field>        <name>id_produto</name>
-        <case_insensitive>N</case_insensitive>
-        </field>      </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>dim_localizacao</name>
+    <name>Output Table - dim_localizacao</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -844,7 +582,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sipac_2v2</connection>
+    <connection>sipac2_olap</connection>
     <schema/>
     <table>dim_localizacao</table>
     <commit>1000</commit>
@@ -891,14 +629,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>240</yloc>
+      <xloc>768</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>dim_produto</name>
+    <name>Output table - dim_produto</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -908,7 +646,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sipac_2v2</connection>
+    <connection>sipac2_olap</connection>
     <schema/>
     <table>dim_produto</table>
     <commit>1000</commit>
@@ -951,8 +689,368 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
+      <xloc>768</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Select values - converte mesano para number</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <meta>        <name>mesano</name>
+        <rename>mesano</rename>
+        <type>Number</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>176</xloc>
       <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Sort rows id_produto</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>id_produto</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Sort rows mesano</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>mesano</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Sort rows municipio_id</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>municipio_id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Switch &#x2f; Case 2</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+<fieldname>mes</fieldname>
+<use_contains>N</use_contains>
+<case_value_type>Integer</case_value_type>
+<case_value_format/>
+<case_value_decimal/>
+<case_value_group/>
+<default_target_step>dim_tempo other</default_target_step>
+<cases><case><value>12</value>
+<target_step>dim_tempo 12</target_step>
+</case></cases>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Switch &#x2f; Case 2 2</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+<fieldname>mes</fieldname>
+<use_contains>N</use_contains>
+<case_value_type>Integer</case_value_type>
+<case_value_format/>
+<case_value_decimal/>
+<case_value_group/>
+<default_target_step>fato_producao_mes_others</default_target_step>
+<cases><case><value>12</value>
+<target_step>fato_producao_mes12</target_step>
+</case></cases>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Table input 2</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Incaper</connection>
+    <sql>select &#xa;	concat&#x28;	producao.mes,producao.ano&#x29; as mesano,&#xa;	producao.mes,&#xa;	producao.ano,&#xa;	producao.preco,&#xa;	producao.producao as quantidade_produzida, &#xa;	producao.area_plantada, &#xa;	producao.area_em_formacao, &#xa;	producao.area_colhida, &#xa;	producao.irrigado,&#xa;	produto.nome as nome_produto, &#xa;	produto.id as id_produto, &#xa;	produto.codigo as codigo_produto, &#xa;	grupo.nome_grupo,&#xa;	grupo.id as grupo_id, &#xa;	estado.id as estado_id, &#xa;	estado.nome as estado_nome, &#xa;	meso.nome as meso_nome, &#xa;	meso.id as meso_id,&#xa;	micro.id as micro_id, &#xa;	micro.nome as micro_nome, &#xa;	municipio.id as municipio_id, &#xa;	municipio.nome as municipio_nome&#xa;from agricultura_producao as producao&#xa;&#xa;INNER JOIN core_municipio as municipio &#xa;	ON&#x28;producao.municipio_id &#x3d; municipio.id&#x29;&#xa;&#xa;INNER JOIN core_microregiao as micro &#xa;	ON&#x28;municipio.microregiao_id &#x3d; micro.id&#x29;&#xa;&#xa;INNER JOIN core_mesoregiao as meso &#xa;	ON&#x28;micro.mesoregiao_id &#x3d; meso.id&#x29;&#xa;&#xa;INNER JOIN core_estado as estado &#xa;	ON&#x28;meso.estado_id &#x3d; estado.id&#x29;&#xa;&#xa;INNER JOIN agricultura_produto as produto &#xa;	ON&#x28;produto.id &#x3d; producao.produto_id&#x29;&#xa;&#xa;INNER JOIN agricultura_grupo as &#xa;	grupo ON&#x28;produto.grupo_id &#x3d; grupo.id&#x29;&#xa;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>176</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Unique rows id_produto</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <count_rows>N</count_rows>
+      <count_field/>
+      <reject_duplicate_row>N</reject_duplicate_row>
+      <error_description/>
+    <fields>      <field>        <name>id_produto</name>
+        <case_insensitive>N</case_insensitive>
+        </field>      </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Unique rows mesano</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <count_rows>N</count_rows>
+      <count_field/>
+      <reject_duplicate_row>N</reject_duplicate_row>
+      <error_description/>
+    <fields>      <field>        <name>mesano</name>
+        <case_insensitive>N</case_insensitive>
+        </field>      </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>576</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Unique rows municipio_id</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <count_rows>N</count_rows>
+      <count_field/>
+      <reject_duplicate_row>N</reject_duplicate_row>
+      <error_description/>
+    <fields>      <field>        <name>municipio_id</name>
+        <case_insensitive>N</case_insensitive>
+        </field>      </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -968,7 +1066,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sipac_2v2</connection>
+    <connection>sipac2_olap</connection>
     <schema/>
     <table>dim_tempo</table>
     <commit>1000</commit>
@@ -987,7 +1085,7 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>mesano</column_name>
+          <column_name>id_mesano</column_name>
           <stream_name>mesano</stream_name>
         </field>
         <field>
@@ -1007,14 +1105,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
-      <yloc>512</yloc>
+      <xloc>768</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>fato_producao</name>
+    <name>dim_tempo 12</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1024,7 +1122,119 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sipac_2v2</connection>
+    <connection>sipac2_olap</connection>
+    <schema/>
+    <table>dim_tempo_12</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_mesano</column_name>
+          <stream_name>mesano</stream_name>
+        </field>
+        <field>
+          <column_name>mes</column_name>
+          <stream_name>mes</stream_name>
+        </field>
+        <field>
+          <column_name>ano</column_name>
+          <stream_name>ano</stream_name>
+        </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1024</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>dim_tempo other</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>sipac2_olap</connection>
+    <schema/>
+    <table>dim_tempo_other</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_mesano</column_name>
+          <stream_name>mesano</stream_name>
+        </field>
+        <field>
+          <column_name>mes</column_name>
+          <stream_name>mes</stream_name>
+        </field>
+        <field>
+          <column_name>ano</column_name>
+          <stream_name>ano</stream_name>
+        </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1040</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>fato_producao</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>sipac2_olap</connection>
     <schema/>
     <table>fato_producao</table>
     <commit>1000</commit>
@@ -1043,8 +1253,16 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>mesano</column_name>
+          <column_name>fid_data</column_name>
           <stream_name>mesano</stream_name>
+        </field>
+        <field>
+          <column_name>fid_produto</column_name>
+          <stream_name>id_produto</stream_name>
+        </field>
+        <field>
+          <column_name>fid_municipio</column_name>
+          <stream_name>municipio_id</stream_name>
         </field>
         <field>
           <column_name>quantidade_produzida</column_name>
@@ -1063,16 +1281,8 @@
           <stream_name>area_colhida</stream_name>
         </field>
         <field>
-          <column_name>irrigado</column_name>
-          <stream_name>irrigado</stream_name>
-        </field>
-        <field>
-          <column_name>id_produto</column_name>
-          <stream_name>id_produto</stream_name>
-        </field>
-        <field>
-          <column_name>municipio_id</column_name>
-          <stream_name>municipio_id</stream_name>
+          <column_name>preco</column_name>
+          <stream_name>preco</stream_name>
         </field>
     </fields>
     <cluster_schema/>
@@ -1083,8 +1293,160 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>640</yloc>
+      <xloc>176</xloc>
+      <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>fato_producao_mes12</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>sipac2_olap</connection>
+    <schema/>
+    <table>fato_producao_mes12</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>fid_data</column_name>
+          <stream_name>mesano</stream_name>
+        </field>
+        <field>
+          <column_name>fid_produto</column_name>
+          <stream_name>id_produto</stream_name>
+        </field>
+        <field>
+          <column_name>fid_municipio</column_name>
+          <stream_name>municipio_id</stream_name>
+        </field>
+        <field>
+          <column_name>quantidade_produzida</column_name>
+          <stream_name>quantidade_produzida</stream_name>
+        </field>
+        <field>
+          <column_name>area_plantada</column_name>
+          <stream_name>area_plantada</stream_name>
+        </field>
+        <field>
+          <column_name>area_em_formacao</column_name>
+          <stream_name>area_em_formacao</stream_name>
+        </field>
+        <field>
+          <column_name>area_colhida</column_name>
+          <stream_name>area_colhida</stream_name>
+        </field>
+        <field>
+          <column_name>preco</column_name>
+          <stream_name>preco</stream_name>
+        </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>432</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>fato_producao_mes_others</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>sipac2_olap</connection>
+    <schema/>
+    <table>fato_producao_mes_others</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>fid_data</column_name>
+          <stream_name>mesano</stream_name>
+        </field>
+        <field>
+          <column_name>fid_produto</column_name>
+          <stream_name>id_produto</stream_name>
+        </field>
+        <field>
+          <column_name>fid_municipio</column_name>
+          <stream_name>municipio_id</stream_name>
+        </field>
+        <field>
+          <column_name>quantidade_produzida</column_name>
+          <stream_name>quantidade_produzida</stream_name>
+        </field>
+        <field>
+          <column_name>area_plantada</column_name>
+          <stream_name>area_plantada</stream_name>
+        </field>
+        <field>
+          <column_name>area_em_formacao</column_name>
+          <stream_name>area_em_formacao</stream_name>
+        </field>
+        <field>
+          <column_name>area_colhida</column_name>
+          <stream_name>area_colhida</stream_name>
+        </field>
+        <field>
+          <column_name>preco</column_name>
+          <stream_name>preco</stream_name>
+        </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
