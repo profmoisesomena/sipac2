@@ -1,0 +1,18 @@
+<Schema name="New Schema1">
+  <Cube name="cubo_lucas_teste" visible="true" cache="true" enabled="true">
+    <Table name="fato_producao" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fid_produto" name="produto">
+      <Hierarchy name="produto" visible="true" hasAll="true" primaryKey="id_produto">
+        <Table name="dim_produto" schema="public">
+        </Table>
+        <Level name="grupo_produto" visible="true" column="nome_grupo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="nome_produto" visible="true" column="nome_produto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="quantidade(TN)" column="quantidade_produzida" datatype="Numeric" aggregator="count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
