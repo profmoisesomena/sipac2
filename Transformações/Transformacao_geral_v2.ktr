@@ -444,7 +444,7 @@
     <database>Incaper</database>
     <port>5432</port>
     <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4aa1da379d0c3fd89</password>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff238bc0fb8c</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -461,14 +461,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>sipac2_dimlocalizacao</name>
+    <name>sipac2_olap</name>
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>sipac2_olap</database>
     <port>5432</port>
     <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4aa1da379d0c3fd89</password>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff238bc0fb8c</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -552,7 +552,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sipac2_dimlocalizacao</connection>
+    <connection>sipac2_olap</connection>
     <schema/>
     <table>dim_localizacao</table>
     <commit>1000</commit>
@@ -616,7 +616,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sipac2_dimlocalizacao</connection>
+    <connection>sipac2_olap</connection>
     <schema/>
     <table>dim_produto</table>
     <commit>1000</commit>
@@ -968,7 +968,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sipac2_dimlocalizacao</connection>
+    <connection>sipac2_olap</connection>
     <schema/>
     <table>dim_tempo</table>
     <commit>1000</commit>
@@ -1024,7 +1024,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sipac2_dimlocalizacao</connection>
+    <connection>sipac2_olap</connection>
     <schema/>
     <table>fato_producao</table>
     <commit>1000</commit>
