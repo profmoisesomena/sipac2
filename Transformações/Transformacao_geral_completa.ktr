@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Transformacao_geral_v3_com_separacao_mes_12</name>
+    <name>Transformacao_geral_completa</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -461,7 +461,7 @@
     </attributes>
   </connection>
   <connection>
-    <name>incaper_olap</name>
+    <name>sipac2_olap</name>
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
@@ -540,36 +540,6 @@
       <to>Sort rows id_produto</to>
       <enabled>Y</enabled>
     </hop>
-    <hop>
-      <from>dim_tempo</from>
-      <to>Switch &#x2f; Case 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch &#x2f; Case 2</from>
-      <to>dim_tempo 12</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch &#x2f; Case 2</from>
-      <to>dim_tempo other</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>fato_producao</from>
-      <to>Switch &#x2f; Case 2 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch &#x2f; Case 2 2</from>
-      <to>fato_producao_mes12</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch &#x2f; Case 2 2</from>
-      <to>fato_producao_mes_others</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
   <step>
     <name>Output Table - dim_localizacao</name>
@@ -582,7 +552,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>incaper_olap</connection>
+    <connection>sipac2_olap</connection>
     <schema/>
     <table>dim_localizacao</table>
     <commit>1000</commit>
@@ -646,7 +616,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>incaper_olap</connection>
+    <connection>sipac2_olap</connection>
     <schema/>
     <table>dim_produto</table>
     <commit>1000</commit>
@@ -798,7 +768,15 @@
       <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>mesano</name>
+        <name>ano</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>mes</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -863,74 +841,6 @@
     </step>
 
   <step>
-    <name>Switch &#x2f; Case 2</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<fieldname>mes</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>Integer</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>dim_tempo other</default_target_step>
-<cases><case><value>12</value>
-<target_step>dim_tempo 12</target_step>
-</case></cases>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>896</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Switch &#x2f; Case 2 2</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<fieldname>mes</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>Integer</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>fato_producao_mes_others</default_target_step>
-<cases><case><value>12</value>
-<target_step>fato_producao_mes12</target_step>
-</case></cases>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>496</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
     <name>Table input 2</name>
     <type>TableInput</type>
     <description/>
@@ -942,7 +852,7 @@
       <schema_name/>
     </partitioning>
     <connection>Incaper</connection>
-    <sql>select &#xa;	concat&#x28;	producao.mes,producao.ano&#x29; as mesano,&#xa;	producao.mes,&#xa;	producao.ano,&#xa;	producao.producao as quantidade_produzida, &#xa;	producao.area_plantada, &#xa;	producao.area_em_formacao, &#xa;	producao.area_colhida, &#xa;	producao.irrigado,&#xa;	produto.nome as nome_produto, &#xa;	produto.id as id_produto, &#xa;	produto.codigo as codigo_produto, &#xa;	grupo.nome_grupo,&#xa;	grupo.id as grupo_id, &#xa;	estado.id as estado_id, &#xa;	estado.nome as estado_nome, &#xa;	meso.nome as meso_nome, &#xa;	meso.id as meso_id,&#xa;	micro.id as micro_id, &#xa;	micro.nome as micro_nome, &#xa;	municipio.id as municipio_id, &#xa;	municipio.nome as municipio_nome&#xa;from agricultura_producao as producao&#xa;&#xa;INNER JOIN core_municipio as municipio &#xa;	ON&#x28;producao.municipio_id &#x3d; municipio.id&#x29;&#xa;&#xa;INNER JOIN core_microregiao as micro &#xa;	ON&#x28;municipio.microregiao_id &#x3d; micro.id&#x29;&#xa;&#xa;INNER JOIN core_mesoregiao as meso &#xa;	ON&#x28;micro.mesoregiao_id &#x3d; meso.id&#x29;&#xa;&#xa;INNER JOIN core_estado as estado &#xa;	ON&#x28;meso.estado_id &#x3d; estado.id&#x29;&#xa;&#xa;INNER JOIN agricultura_produto as produto &#xa;	ON&#x28;produto.id &#x3d; producao.produto_id&#x29;&#xa;&#xa;INNER JOIN agricultura_grupo as &#xa;	grupo ON&#x28;produto.grupo_id &#x3d; grupo.id&#x29;&#xa;&#xa;</sql>
+    <sql>select &#xa;	concat&#x28;	producao.mes,producao.ano&#x29; as mesano,&#xa;	producao.mes,&#xa;	producao.ano,&#xa;	producao.preco,&#xa;	producao.producao as quantidade_produzida, &#xa;	producao.area_plantada, &#xa;	producao.area_em_formacao, &#xa;	producao.area_colhida, &#xa;	producao.irrigado,&#xa;	produto.nome as nome_produto, &#xa;	produto.id as id_produto, &#xa;	produto.codigo as codigo_produto, &#xa;	grupo.nome_grupo,&#xa;	grupo.id as grupo_id, &#xa;	estado.id as estado_id, &#xa;	estado.nome as estado_nome, &#xa;	meso.nome as meso_nome, &#xa;	meso.id as meso_id,&#xa;	micro.id as micro_id, &#xa;	micro.nome as micro_nome, &#xa;	municipio.id as municipio_id, &#xa;	municipio.nome as municipio_nome&#xa;from agricultura_producao as producao&#xa;&#xa;INNER JOIN core_municipio as municipio &#xa;	ON&#x28;producao.municipio_id &#x3d; municipio.id&#x29;&#xa;&#xa;INNER JOIN core_microregiao as micro &#xa;	ON&#x28;municipio.microregiao_id &#x3d; micro.id&#x29;&#xa;&#xa;INNER JOIN core_mesoregiao as meso &#xa;	ON&#x28;micro.mesoregiao_id &#x3d; meso.id&#x29;&#xa;&#xa;INNER JOIN core_estado as estado &#xa;	ON&#x28;meso.estado_id &#x3d; estado.id&#x29;&#xa;&#xa;INNER JOIN agricultura_produto as produto &#xa;	ON&#x28;produto.id &#x3d; producao.produto_id&#x29;&#xa;&#xa;INNER JOIN agricultura_grupo as &#xa;	grupo ON&#x28;produto.grupo_id &#x3d; grupo.id&#x29;&#xa;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1066,7 +976,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>incaper_olap</connection>
+    <connection>sipac2_olap</connection>
     <schema/>
     <table>dim_tempo</table>
     <commit>1000</commit>
@@ -1112,129 +1022,17 @@
     </step>
 
   <step>
-    <name>dim_tempo 12</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>incaper_olap</connection>
-    <schema/>
-    <table>dim_tempo_12</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>id_mesano</column_name>
-          <stream_name>mesano</stream_name>
-        </field>
-        <field>
-          <column_name>mes</column_name>
-          <stream_name>mes</stream_name>
-        </field>
-        <field>
-          <column_name>ano</column_name>
-          <stream_name>ano</stream_name>
-        </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1040</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>dim_tempo other</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>incaper_olap</connection>
-    <schema/>
-    <table>dim_tempo_other</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>id_mesano</column_name>
-          <stream_name>mesano</stream_name>
-        </field>
-        <field>
-          <column_name>mes</column_name>
-          <stream_name>mes</stream_name>
-        </field>
-        <field>
-          <column_name>ano</column_name>
-          <stream_name>ano</stream_name>
-        </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1040</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
     <name>fato_producao</name>
     <type>TableOutput</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>incaper_olap</connection>
+    <connection>sipac2_olap</connection>
     <schema/>
     <table>fato_producao</table>
     <commit>1000</commit>
@@ -1280,6 +1078,10 @@
           <column_name>area_colhida</column_name>
           <stream_name>area_colhida</stream_name>
         </field>
+        <field>
+          <column_name>preco</column_name>
+          <stream_name>preco</stream_name>
+        </field>
     </fields>
     <cluster_schema/>
     <remotesteps>
@@ -1291,150 +1093,6 @@
     <GUI>
       <xloc>176</xloc>
       <yloc>496</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>fato_producao_mes12</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>incaper_olap</connection>
-    <schema/>
-    <table>fato_producao_mes12</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>fid_data</column_name>
-          <stream_name>mesano</stream_name>
-        </field>
-        <field>
-          <column_name>fid_produto</column_name>
-          <stream_name>id_produto</stream_name>
-        </field>
-        <field>
-          <column_name>fid_municipio</column_name>
-          <stream_name>municipio_id</stream_name>
-        </field>
-        <field>
-          <column_name>quantidade_produzida</column_name>
-          <stream_name>quantidade_produzida</stream_name>
-        </field>
-        <field>
-          <column_name>area_plantada</column_name>
-          <stream_name>area_plantada</stream_name>
-        </field>
-        <field>
-          <column_name>area_em_formacao</column_name>
-          <stream_name>area_em_formacao</stream_name>
-        </field>
-        <field>
-          <column_name>area_colhida</column_name>
-          <stream_name>area_colhida</stream_name>
-        </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>fato_producao_mes_others</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>incaper_olap</connection>
-    <schema/>
-    <table>fato_producao_mes_others</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>fid_data</column_name>
-          <stream_name>mesano</stream_name>
-        </field>
-        <field>
-          <column_name>fid_produto</column_name>
-          <stream_name>id_produto</stream_name>
-        </field>
-        <field>
-          <column_name>fid_municipio</column_name>
-          <stream_name>municipio_id</stream_name>
-        </field>
-        <field>
-          <column_name>quantidade_produzida</column_name>
-          <stream_name>quantidade_produzida</stream_name>
-        </field>
-        <field>
-          <column_name>area_plantada</column_name>
-          <stream_name>area_plantada</stream_name>
-        </field>
-        <field>
-          <column_name>area_em_formacao</column_name>
-          <stream_name>area_em_formacao</stream_name>
-        </field>
-        <field>
-          <column_name>area_colhida</column_name>
-          <stream_name>area_colhida</stream_name>
-        </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
