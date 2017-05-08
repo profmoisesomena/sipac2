@@ -444,7 +444,19 @@
     <database>Incaper</database>
     <port>5432</port>
     <username>postgres</username>
+<<<<<<< HEAD:Transformações/Transformacao_geral_v3_com_separacao_mes_12.ktr
+<<<<<<< HEAD
     <password>Encrypted 2be98afc86aa7f2e4aa1da379d0c3fd89</password>
+=======
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff238bc0fb8c</password>
+>>>>>>> ae6f18844305ddbc3657576d8d4ed17ad1d7f56c
+=======
+<<<<<<< HEAD:Transformações/Transformacao_geral_v3_com_separacao_mes_12.ktr
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff238bc0fb8c</password>
+=======
+    <password>Encrypted 2be98afc86aa7f2e4aa1da379d0c3fd89</password>
+>>>>>>> lucas:Transformações/versoes_teste/Transformacao_geral_v3_com_separacao_mes_12.ktr
+>>>>>>> eee9613bdf67a01d0260d6eeb843004d3d8e6859:Transformações/versoes_teste/Transformacao_geral_v3_com_separacao_mes_12.ktr
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -468,7 +480,19 @@
     <database>sipac2_olap</database>
     <port>5432</port>
     <username>postgres</username>
+<<<<<<< HEAD:Transformações/Transformacao_geral_v3_com_separacao_mes_12.ktr
+<<<<<<< HEAD
     <password>Encrypted 2be98afc86aa7f2e4aa1da379d0c3fd89</password>
+=======
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff238bc0fb8c</password>
+>>>>>>> ae6f18844305ddbc3657576d8d4ed17ad1d7f56c
+=======
+<<<<<<< HEAD:Transformações/Transformacao_geral_v3_com_separacao_mes_12.ktr
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff238bc0fb8c</password>
+=======
+    <password>Encrypted 2be98afc86aa7f2e4aa1da379d0c3fd89</password>
+>>>>>>> lucas:Transformações/versoes_teste/Transformacao_geral_v3_com_separacao_mes_12.ktr
+>>>>>>> eee9613bdf67a01d0260d6eeb843004d3d8e6859:Transformações/versoes_teste/Transformacao_geral_v3_com_separacao_mes_12.ktr
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -924,7 +948,19 @@
       </output>
     </remotesteps>
     <GUI>
+<<<<<<< HEAD:Transformações/Transformacao_geral_v3_com_separacao_mes_12.ktr
+<<<<<<< HEAD
       <xloc>384</xloc>
+=======
+      <xloc>304</xloc>
+>>>>>>> ae6f18844305ddbc3657576d8d4ed17ad1d7f56c
+=======
+<<<<<<< HEAD:Transformações/Transformacao_geral_v3_com_separacao_mes_12.ktr
+      <xloc>304</xloc>
+=======
+      <xloc>384</xloc>
+>>>>>>> lucas:Transformações/versoes_teste/Transformacao_geral_v3_com_separacao_mes_12.ktr
+>>>>>>> eee9613bdf67a01d0260d6eeb843004d3d8e6859:Transformações/versoes_teste/Transformacao_geral_v3_com_separacao_mes_12.ktr
       <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1161,8 +1197,23 @@
       </output>
     </remotesteps>
     <GUI>
+<<<<<<< HEAD:Transformações/Transformacao_geral_v3_com_separacao_mes_12.ktr
+<<<<<<< HEAD
       <xloc>1024</xloc>
       <yloc>240</yloc>
+=======
+      <xloc>1040</xloc>
+      <yloc>256</yloc>
+>>>>>>> ae6f18844305ddbc3657576d8d4ed17ad1d7f56c
+=======
+<<<<<<< HEAD:Transformações/Transformacao_geral_v3_com_separacao_mes_12.ktr
+      <xloc>1040</xloc>
+      <yloc>256</yloc>
+=======
+      <xloc>1024</xloc>
+      <yloc>240</yloc>
+>>>>>>> lucas:Transformações/versoes_teste/Transformacao_geral_v3_com_separacao_mes_12.ktr
+>>>>>>> eee9613bdf67a01d0260d6eeb843004d3d8e6859:Transformações/versoes_teste/Transformacao_geral_v3_com_separacao_mes_12.ktr
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1361,8 +1412,23 @@
       </output>
     </remotesteps>
     <GUI>
+<<<<<<< HEAD:Transformações/Transformacao_geral_v3_com_separacao_mes_12.ktr
+<<<<<<< HEAD
       <xloc>688</xloc>
       <yloc>432</yloc>
+=======
+      <xloc>496</xloc>
+      <yloc>448</yloc>
+>>>>>>> ae6f18844305ddbc3657576d8d4ed17ad1d7f56c
+=======
+<<<<<<< HEAD:Transformações/Transformacao_geral_v3_com_separacao_mes_12.ktr
+      <xloc>496</xloc>
+      <yloc>448</yloc>
+=======
+      <xloc>688</xloc>
+      <yloc>432</yloc>
+>>>>>>> lucas:Transformações/versoes_teste/Transformacao_geral_v3_com_separacao_mes_12.ktr
+>>>>>>> eee9613bdf67a01d0260d6eeb843004d3d8e6859:Transformações/versoes_teste/Transformacao_geral_v3_com_separacao_mes_12.ktr
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1433,8 +1499,23 @@
       </output>
     </remotesteps>
     <GUI>
+<<<<<<< HEAD:Transformações/Transformacao_geral_v3_com_separacao_mes_12.ktr
+<<<<<<< HEAD
       <xloc>688</xloc>
       <yloc>528</yloc>
+=======
+      <xloc>496</xloc>
+      <yloc>560</yloc>
+>>>>>>> ae6f18844305ddbc3657576d8d4ed17ad1d7f56c
+=======
+<<<<<<< HEAD:Transformações/Transformacao_geral_v3_com_separacao_mes_12.ktr
+      <xloc>496</xloc>
+      <yloc>560</yloc>
+=======
+      <xloc>688</xloc>
+      <yloc>528</yloc>
+>>>>>>> lucas:Transformações/versoes_teste/Transformacao_geral_v3_com_separacao_mes_12.ktr
+>>>>>>> eee9613bdf67a01d0260d6eeb843004d3d8e6859:Transformações/versoes_teste/Transformacao_geral_v3_com_separacao_mes_12.ktr
       <draw>Y</draw>
     </GUI>
     </step>
