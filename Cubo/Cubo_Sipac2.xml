@@ -36,33 +36,15 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Measure name="Quant_produzida" column="quantidade_produzida" datatype="Integer" aggregator="sum" description="Producao_por_tonelada" visible="true">
+    <Measure name="Quant_produzida" column="quantidade_produzida" datatype="Integer" aggregator="avg" description="Producao_por_tonelada" visible="true">
     </Measure>
-    <Measure name="preco" column="preco" datatype="Numeric" aggregator="sum" description="Preco" visible="true">
+    <Measure name="preco" column="preco" datatype="Numeric" aggregator="avg" description="Preco" visible="true">
     </Measure>
     <Measure name="Area_plantada" column="area_plantada" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
     <Measure name="Area_formacao" column="area_em_formacao" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="Area_Colhida" column="area_colhida" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-  </Cube>
-  <Cube name="cubo_prod_preco" visible="true" cache="true" enabled="true">
-    <Table name="fato_producao" schema="public">
-    </Table>
-    <Dimension type="StandardDimension" visible="true" foreignKey="fid_produto" highCardinality="false" name="Produtos" description="produtos">
-      <Hierarchy name="Produtos" visible="true" hasAll="true" primaryKey="id_produto">
-        <Table name="dim_produto" schema="public">
-        </Table>
-        <Level name="Grupo" visible="true" column="nome_grupo" ordinalColumn="nome_grupo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Grupos">
-        </Level>
-        <Level name="Produto" visible="true" column="nome_produto" ordinalColumn="nome_produto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Produtos">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Measure name="Producao" column="quantidade_produzida" aggregator="sum" description="produ&#231;&#227;o" visible="true">
-    </Measure>
-    <Measure name="Preco" column="preco" aggregator="sum" description="pre&#231;os" visible="true">
+    <Measure name="Area_Colhida" column="area_colhida" datatype="Integer" aggregator="avg" visible="true">
     </Measure>
   </Cube>
 </Schema>
