@@ -1,0 +1,44 @@
+<Schema name="cubo_sipac_preco_qtdProduzida">
+  <Cube name="cubo_sipac_preco_qtdProduzida" visible="true" cache="true" enabled="true">
+    <Table name="fato_producao" schema="public" alias="">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fid_produto" name="Produto">
+      <Hierarchy name="Produto" visible="true" hasAll="true" primaryKey="id_produto" description="Dim_Produto">
+        <Table name="dim_produto" schema="public" alias="Produto">
+        </Table>
+        <Level name="Grupo" visible="true" column="nome_grupo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Produto" visible="true" column="nome_grupo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fid_municipio" name="Localizacao">
+      <Hierarchy name="Localizacao" visible="true" hasAll="true" description="Dimm_Localizacao">
+        <Table name="dim_localizacao" schema="public" alias="Localizacao">
+        </Table>
+        <Level name="Estado" visible="true" column="estado_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Mesoregiao" visible="true" column="meso_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Microregiao" visible="true" column="micro_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Municipio" visible="true" column="municipio_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fid_data" name="Tempo">
+      <Hierarchy name="Data" visible="true" hasAll="true" primaryKey="id_mesano" description="Dim_tempo">
+        <Table name="dim_tempo" schema="public" alias="Data">
+        </Table>
+        <Level name="Ano" visible="true" column="ano" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="mes" visible="true" column="mes" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Quant_produzida" column="quantidade_produzida" datatype="Integer" aggregator="sum" description="Producao_por_tonelada" visible="true">
+    </Measure>
+    <Measure name="preco" column="preco" datatype="Numeric" aggregator="sum" description="Preco" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
