@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="1.0.8">
+ <project-name>SipacOlapV2</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+   <property key="Logical" value="Modelo de Dados" />
+  </data-source>
+  <data-source id="DS2">
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="Logical" value="SipacOlapV2" />
+   <property key="JDBC URL" value="jdbc:postgresql://localhost:5432/SipacOlapV2" />
+   <property key="UID" value="postgres" />
+   <property key="PWD" value="admin123" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+  <database id="DB0" populated="true" UUID="346b0564-020a-4fcc-8032-a0d55d8d2663" dbcs-ref="DS2" name="SipacOlapV2" physicalName="SipacOlapV2" >
+   <catalog id="CAT1" populated="true" UUID="f9fd35f4-82ed-4551-afc8-fa16fba76743" name="SipacOlapV2" nativeTerm="database" physicalName="SipacOlapV2" >
+    <schema id="SCH2" populated="true" UUID="1b875078-f121-4528-86c6-e3c210d93dee" name="information_schema" nativeTerm="schema" physicalName="information_schema" >
+    </schema>
+    <schema id="SCH3" populated="true" UUID="c0b05771-0665-440a-836e-d8aade5f5fbc" name="pg_catalog" nativeTerm="schema" physicalName="pg_catalog" >
+    </schema>
+    <schema id="SCH4" populated="true" UUID="61e05e30-c1fe-4255-bad5-d43f99b7a872" name="pg_toast_temp_1" nativeTerm="schema" physicalName="pg_toast_temp_1" >
+    </schema>
+    <schema id="SCH5" populated="true" UUID="2b5ca3ae-4101-4248-b029-d281317e41c2" name="public" nativeTerm="schema" physicalName="public" >
+     <table id="TAB6" populated="true" UUID="745f0888-2e6c-4823-9fa8-6afa839872c1" name="dim_localizacao" objectType="TABLE" physicalName="dim_localizacao" >
+      <remarks></remarks>
+      <folder id="FOLTAB61" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL7" populated="true" UUID="5408e5c2-d434-4a8a-ac56-66ad2baa1ebd" autoIncrement="false" name="id_municipio" nullable="1" physicalName="id_municipio" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL8" populated="true" UUID="993fe6dc-d410-45bf-8a03-75558dadb248" autoIncrement="false" name="municipio_nome" nullable="1" physicalName="municipio_nome" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL9" populated="true" UUID="2902b901-2960-4ca5-bbf0-2190710b9649" autoIncrement="false" name="micro_nome" nullable="1" physicalName="micro_nome" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL10" populated="true" UUID="501f076a-3d65-450c-bd57-8d4bac615b53" autoIncrement="false" name="meso_nome" nullable="1" physicalName="meso_nome" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL11" populated="true" UUID="3863a8a9-2dd0-4676-b496-26ffddc2f6f3" autoIncrement="false" name="estado_nome" nullable="1" physicalName="estado_nome" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB63" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB62" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB64" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX12" populated="true" UUID="f307fe58-be37-4bfa-b5fb-a8b7514604e2" clustered="false" name="dim_localizacao_pk" physicalName="dim_localizacao_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB13" populated="true" UUID="5b17523c-6598-463b-b050-4ab583805d7f" name="dim_produto" objectType="TABLE" physicalName="dim_produto" >
+      <remarks></remarks>
+      <folder id="FOLTAB131" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL14" populated="true" UUID="7b0fe637-9e9a-44cc-97c3-1ce0223298f0" autoIncrement="false" name="id_produto" nullable="1" physicalName="id_produto" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL15" populated="true" UUID="21b9fb3d-b1e6-45ea-9917-b420cd5ac8dd" autoIncrement="false" name="nome_produto" nullable="1" physicalName="nome_produto" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL16" populated="true" UUID="967a0544-b3e7-4ca2-9b44-e22541ea8630" autoIncrement="false" name="codigo_produto" nullable="1" physicalName="codigo_produto" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL17" populated="true" UUID="64e423ec-94c1-4d97-9027-d7dfde0ac02f" autoIncrement="false" name="nome_grupo" nullable="1" physicalName="nome_grupo" precision="25" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB133" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB132" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB134" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX18" populated="true" UUID="20bc685d-8227-400d-9525-8ff45f635225" clustered="false" name="dim_produto_pk" physicalName="dim_produto_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB19" populated="true" UUID="156d0d8c-26c3-4b15-b9c4-1628737bae88" name="dim_tempo" objectType="TABLE" physicalName="dim_tempo" >
+      <remarks></remarks>
+      <folder id="FOLTAB191" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL20" populated="true" UUID="191180a1-c822-41e2-9688-7cc0d7630804" autoIncrement="false" name="mesano" nullable="1" physicalName="mesano" precision="20" referenceCount="1" scale="0" sourceDataTypeName="int8" type="-5" >
+        <remarks></remarks>
+       </column>
+       <column id="COL21" populated="true" UUID="5c7f5f4e-17fc-4d36-b6d6-fb5909a5c91c" autoIncrement="false" name="mes" nullable="1" physicalName="mes" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL22" populated="true" UUID="a4163a6d-a772-49b6-8e5c-7904f3e00a8f" autoIncrement="false" name="ano" nullable="1" physicalName="ano" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB193" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB192" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB194" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX23" populated="true" UUID="d22cb226-4989-49bd-8335-170bf0001b7e" clustered="false" name="dim_tempo_pk" physicalName="dim_tempo_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB24" populated="true" UUID="9768e23d-a3a9-4779-9d7a-4e179f028e4b" name="fato_producao_fechado" objectType="TABLE" physicalName="fato_producao_fechado" >
+      <remarks></remarks>
+      <folder id="FOLTAB241" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL25" populated="true" UUID="556be991-15dc-4d38-b7b7-3242cadcd5ad" autoIncrement="false" name="fid_data" nullable="1" physicalName="fid_data" precision="20" referenceCount="1" scale="0" sourceDataTypeName="int8" type="-5" >
+        <remarks></remarks>
+       </column>
+       <column id="COL26" populated="true" UUID="3b863a64-7ea9-4881-a123-6e3cf7bc6774" autoIncrement="false" name="fid_produto" nullable="1" physicalName="fid_produto" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL27" populated="true" UUID="ba13bd30-ca23-42f2-ad0b-883da1b05f48" autoIncrement="false" name="fid_municipio" nullable="1" physicalName="fid_municipio" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL28" populated="true" UUID="aaeaabdc-1055-4f73-adbf-ce9e9c593cba" autoIncrement="false" name="quantidade_produzida" nullable="1" physicalName="quantidade_produzida" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL29" populated="true" UUID="db1e3d8c-b203-4e1a-bf12-76f4ccead173" autoIncrement="false" name="area_em_producao" nullable="1" physicalName="area_em_producao" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL30" populated="true" UUID="05b53a97-08e7-40c9-aeb5-39de1168bb55" autoIncrement="false" name="area_em_formacao" nullable="1" physicalName="area_em_formacao" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL31" populated="true" UUID="6cd166e8-1758-4f27-9b90-12687320474d" autoIncrement="false" name="area_colhida" nullable="1" physicalName="area_colhida" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL32" populated="true" UUID="04eb0775-37dc-450b-b466-34bd55f6d0ee" autoIncrement="false" name="area_perdida" nullable="1" physicalName="area_perdida" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL33" populated="true" UUID="2b27eb45-0d07-4611-a853-d5063616d5d3" autoIncrement="false" name="valor_producao" nullable="1" physicalName="valor_producao" precision="308" referenceCount="1" scale="17" sourceDataTypeName="float8" type="8" >
+        <remarks></remarks>
+       </column>
+       <column id="COL34" populated="true" UUID="41b642e6-6219-445d-baaa-15b33941fc80" autoIncrement="false" name="rendimento_medio" nullable="1" physicalName="rendimento_medio" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL35" populated="true" UUID="9504fcb2-a75e-47ff-88da-768ce6d71bdb" autoIncrement="false" name="area_irrigada" nullable="1" physicalName="area_irrigada" precision="2" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL36" populated="true" UUID="b2a3c7be-4b84-42bf-9edd-5afed8804c25" autoIncrement="false" name="preco" nullable="1" physicalName="preco" precision="308" referenceCount="1" scale="17" sourceDataTypeName="float8" type="8" >
+        <remarks></remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB243" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB242" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB244" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX37" populated="true" UUID="2979e96f-76d4-4f34-aa6e-ac0f959f5bb7" clustered="false" name="fato_producao_fechado_pk" physicalName="fato_producao_fechado_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB38" populated="true" UUID="90ebaf63-be60-45cb-83a0-958cee2494af" name="fato_producao_previsoes" objectType="TABLE" physicalName="fato_producao_previsoes" >
+      <remarks></remarks>
+      <folder id="FOLTAB381" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL39" populated="true" UUID="b947babb-b294-4f97-b73c-7cd548d6819e" autoIncrement="false" name="fid_data" nullable="1" physicalName="fid_data" precision="20" referenceCount="1" scale="0" sourceDataTypeName="int8" type="-5" >
+        <remarks></remarks>
+       </column>
+       <column id="COL40" populated="true" UUID="ddcdda17-7865-4886-a401-6bdadc0190d5" autoIncrement="false" name="fid_produto" nullable="1" physicalName="fid_produto" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL41" populated="true" UUID="23d16c9f-3326-49c7-bd24-a4cc2f79b786" autoIncrement="false" name="fid_municipio" nullable="1" physicalName="fid_municipio" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL42" populated="true" UUID="3aadfce0-3aeb-4d40-b781-49b72411c8fb" autoIncrement="false" name="quantidade_produzida" nullable="1" physicalName="quantidade_produzida" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL43" populated="true" UUID="c0648ffb-049a-4fa3-a875-50e906134d95" autoIncrement="false" name="area_em_producao" nullable="1" physicalName="area_em_producao" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL44" populated="true" UUID="6a37a7cb-6dbe-4ea5-80a7-a8ab5f034694" autoIncrement="false" name="area_em_formacao" nullable="1" physicalName="area_em_formacao" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL45" populated="true" UUID="1ce59e14-82d8-4a2f-bf04-144fe800b4de" autoIncrement="false" name="area_colhida" nullable="1" physicalName="area_colhida" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL46" populated="true" UUID="d9dc306d-60f2-4f7e-bacf-ddd819cee570" autoIncrement="false" name="area_perdida" nullable="1" physicalName="area_perdida" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL47" populated="true" UUID="ea513198-0b4c-4a35-904e-f59bd27af2ce" autoIncrement="false" name="valor_producao" nullable="1" physicalName="valor_producao" precision="308" referenceCount="1" scale="17" sourceDataTypeName="float8" type="8" >
+        <remarks></remarks>
+       </column>
+       <column id="COL48" populated="true" UUID="74a43b3f-f9f5-4ecc-8b62-3afc537427b6" autoIncrement="false" name="rendimento_medio" nullable="1" physicalName="rendimento_medio" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks></remarks>
+       </column>
+       <column id="COL49" populated="true" UUID="117cee0d-699f-48c9-afaf-acaf930b86f9" autoIncrement="false" name="area_irrigada" nullable="1" physicalName="area_irrigada" precision="2" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL50" populated="true" UUID="b2aa8016-28eb-4f0d-bf0a-334289997a71" autoIncrement="false" name="preco" nullable="1" physicalName="preco" precision="308" referenceCount="1" scale="17" sourceDataTypeName="float8" type="8" >
+        <remarks></remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB383" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB382" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB384" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX51" populated="true" UUID="5f053384-2222-4b91-9c45-d690d6a23e3b" clustered="false" name="fato_producao_previsoes_pk" physicalName="fato_producao_previsoes_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+    </schema>
+   </catalog>
+   <relationships>
+   </relationships>
+  </database>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB53" populated="true" UUID="78b8141e-5762-468e-85aa-0e586519f980" name="dim_localizacao" objectType="TABLE" physicalName="dim_localizacao" >
+   <remarks></remarks>
+   <folder id="FOLTAB531" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL54" populated="true" UUID="b241aa7d-d6d1-4b1c-9b37-4f16aeebb79c" autoIncrement="false" defaultValue="" name="id_municipio" nullable="1" physicalName="id_municipio" precision="0" referenceCount="1" scale="0" source-column-ref="COL7" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL55" populated="true" UUID="74189183-3a8d-4089-bd04-ad2e909156e3" autoIncrement="false" defaultValue="" name="municipio_nome" nullable="1" physicalName="municipio_nome" precision="50" referenceCount="1" scale="0" source-column-ref="COL8" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL56" populated="true" UUID="d3ac4cd9-6fd5-4bca-9e00-f5ab72fa67ca" autoIncrement="false" defaultValue="" name="micro_nome" nullable="1" physicalName="micro_nome" precision="50" referenceCount="1" scale="0" source-column-ref="COL9" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL57" populated="true" UUID="e2cf8de2-1542-4f96-a177-9b3107667b98" autoIncrement="false" defaultValue="" name="meso_nome" nullable="1" physicalName="meso_nome" precision="50" referenceCount="1" scale="0" source-column-ref="COL10" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL58" populated="true" UUID="d4639b32-3c58-4c83-a161-27c7ddcc3bc7" autoIncrement="false" defaultValue="" name="estado_nome" nullable="1" physicalName="estado_nome" precision="50" referenceCount="1" scale="0" source-column-ref="COL11" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB533" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB532" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB534" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX59" populated="true" UUID="b1f79321-52f5-4666-b5e7-ec80c374c244" clustered="false" name="dim_localizacao_pk" physicalName="dim_localizacao_pk" primaryKeyIndex="true" unique="false" >
+    </index>
+   </folder>
+  </table>
+  <table id="TAB60" populated="true" UUID="6288cb2d-930d-4a5c-9774-ff55505ca3a6" name="dim_produto" objectType="TABLE" physicalName="dim_produto" >
+   <remarks></remarks>
+   <folder id="FOLTAB601" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL61" populated="true" UUID="d7dc7205-4413-4f97-b8a5-4b047e1c0fda" autoIncrement="false" defaultValue="" name="id_produto" nullable="1" physicalName="id_produto" precision="0" referenceCount="1" scale="0" source-column-ref="COL14" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL62" populated="true" UUID="1ec5d665-4beb-443f-a2e4-617bca375454" autoIncrement="false" defaultValue="" name="nome_produto" nullable="1" physicalName="nome_produto" precision="100" referenceCount="1" scale="0" source-column-ref="COL15" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL63" populated="true" UUID="84d2ff54-953d-4a6f-95ef-bbfb1feba912" autoIncrement="false" defaultValue="" name="codigo_produto" nullable="1" physicalName="codigo_produto" precision="20" referenceCount="1" scale="0" source-column-ref="COL16" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL64" populated="true" UUID="d39aa91c-50af-4e00-b97f-fe85a8e29ec9" autoIncrement="false" defaultValue="" name="nome_grupo" nullable="1" physicalName="nome_grupo" precision="25" referenceCount="1" scale="0" source-column-ref="COL17" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB603" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB602" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB604" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX65" populated="true" UUID="b675e940-f011-4072-adf2-20b85b1c8559" clustered="false" name="dim_produto_pk" physicalName="dim_produto_pk" primaryKeyIndex="true" unique="false" >
+    </index>
+   </folder>
+  </table>
+  <table id="TAB66" populated="true" UUID="b929caeb-bcdb-4622-a41b-9e67fecfa2f0" name="dim_tempo" objectType="TABLE" physicalName="dim_tempo" >
+   <remarks></remarks>
+   <folder id="FOLTAB661" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL67" populated="true" UUID="13d882e2-726e-432e-9c8e-64a95afb8aae" autoIncrement="false" defaultValue="" name="mesano" nullable="1" physicalName="mesano" precision="0" referenceCount="1" scale="0" source-column-ref="COL20" sourceDataTypeName="int8" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks></remarks>
+    </column>
+    <column id="COL68" populated="true" UUID="c6f8335e-b96f-426b-af29-a93de8431e7e" autoIncrement="false" defaultValue="" name="mes" nullable="1" physicalName="mes" precision="0" referenceCount="1" scale="0" source-column-ref="COL21" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL69" populated="true" UUID="28af69b0-67ce-4687-8ee1-6c4df683fbaf" autoIncrement="false" defaultValue="" name="ano" nullable="1" physicalName="ano" precision="0" referenceCount="1" scale="0" source-column-ref="COL22" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB663" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB662" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB664" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX70" populated="true" UUID="eee4ed5f-d61d-4661-9920-49b048e1fc51" clustered="false" name="dim_tempo_pk" physicalName="dim_tempo_pk" primaryKeyIndex="true" unique="false" >
+    </index>
+   </folder>
+  </table>
+  <table id="TAB71" populated="true" UUID="e9136cb0-cd54-4f03-81af-5918757dbe6c" name="fato_producao_fechado" objectType="TABLE" physicalName="fato_producao_fechado" >
+   <remarks></remarks>
+   <folder id="FOLTAB711" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL72" populated="true" UUID="91a59ac5-f5de-496e-b1b7-e16d6ab53499" autoIncrement="false" defaultValue="" name="fid_data" nullable="1" physicalName="fid_data" precision="0" referenceCount="1" scale="0" source-column-ref="COL25" sourceDataTypeName="int8" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks></remarks>
+    </column>
+    <column id="COL73" populated="true" UUID="81634a35-171f-42da-9d2c-19a03a2854ad" autoIncrement="false" defaultValue="" name="fid_produto" nullable="1" physicalName="fid_produto" precision="0" referenceCount="1" scale="0" source-column-ref="COL26" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL74" populated="true" UUID="913ecb83-e1ab-4c51-b01e-ca7505e21b1b" autoIncrement="false" defaultValue="" name="fid_municipio" nullable="1" physicalName="fid_municipio" precision="0" referenceCount="1" scale="0" source-column-ref="COL27" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL75" populated="true" UUID="4fcbd694-516d-410c-acb2-fce4d95952f8" autoIncrement="false" defaultValue="" name="quantidade_produzida" nullable="1" physicalName="quantidade_produzida" precision="0" referenceCount="1" scale="0" source-column-ref="COL28" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL76" populated="true" UUID="e3523ce3-b94d-44ed-9891-297ae1d7b576" autoIncrement="false" defaultValue="" name="area_em_producao" nullable="1" physicalName="area_em_producao" precision="0" referenceCount="1" scale="0" source-column-ref="COL29" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL77" populated="true" UUID="86f63196-1986-4955-a0e9-fe048b9f0b60" autoIncrement="false" defaultValue="" name="area_em_formacao" nullable="1" physicalName="area_em_formacao" precision="0" referenceCount="1" scale="0" source-column-ref="COL30" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL78" populated="true" UUID="43d2957f-e1db-4f4e-90e5-45f22e8d8354" autoIncrement="false" defaultValue="" name="area_colhida" nullable="1" physicalName="area_colhida" precision="0" referenceCount="1" scale="0" source-column-ref="COL31" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL79" populated="true" UUID="d02e43d0-aae3-4f79-bc03-2d36a1fd3e92" autoIncrement="false" defaultValue="" name="area_perdida" nullable="1" physicalName="area_perdida" precision="0" referenceCount="1" scale="0" source-column-ref="COL32" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL80" populated="true" UUID="434c848f-e661-4db4-9e2b-1276bbe9022b" autoIncrement="false" defaultValue="" name="valor_producao" nullable="1" physicalName="valor_producao" precision="0" referenceCount="1" scale="0" source-column-ref="COL33" sourceDataTypeName="float8" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
+     <remarks></remarks>
+    </column>
+    <column id="COL81" populated="true" UUID="f861ad1d-fe31-464e-9c78-c1f13f2d77a8" autoIncrement="false" defaultValue="" name="rendimento_medio" nullable="1" physicalName="rendimento_medio" precision="0" referenceCount="1" scale="0" source-column-ref="COL34" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL82" populated="true" UUID="0f955688-e162-4b2c-9132-5c57b11f5658" autoIncrement="false" defaultValue="" name="area_irrigada" nullable="1" physicalName="area_irrigada" precision="2" referenceCount="1" scale="0" source-column-ref="COL35" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL83" populated="true" UUID="5967d41d-3c05-474a-8bdf-d6a124250484" autoIncrement="false" defaultValue="" name="preco" nullable="1" physicalName="preco" precision="0" referenceCount="1" scale="0" source-column-ref="COL36" sourceDataTypeName="float8" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB713" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB712" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB714" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX84" populated="true" UUID="90d7d599-9988-4f10-b7ce-c189534e7ddc" clustered="false" name="fato_producao_fechado_pk" physicalName="fato_producao_fechado_pk" primaryKeyIndex="true" unique="false" >
+    </index>
+   </folder>
+  </table>
+  <table id="TAB85" populated="true" UUID="7a4fc0b1-a242-4769-9e8b-59342ec7d1ab" name="fato_producao_previsoes" objectType="TABLE" physicalName="fato_producao_previsoes" >
+   <remarks></remarks>
+   <folder id="FOLTAB851" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL86" populated="true" UUID="b51a2349-3d82-4419-88d2-7bbaf30a3dbd" autoIncrement="false" defaultValue="" name="fid_data" nullable="1" physicalName="fid_data" precision="0" referenceCount="1" scale="0" source-column-ref="COL39" sourceDataTypeName="int8" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks></remarks>
+    </column>
+    <column id="COL87" populated="true" UUID="c1b7dcae-bf56-4a19-95bc-559b89665a7f" autoIncrement="false" defaultValue="" name="fid_produto" nullable="1" physicalName="fid_produto" precision="0" referenceCount="1" scale="0" source-column-ref="COL40" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL88" populated="true" UUID="e59d0841-c428-4eb3-b2d3-05faeb74e241" autoIncrement="false" defaultValue="" name="fid_municipio" nullable="1" physicalName="fid_municipio" precision="0" referenceCount="1" scale="0" source-column-ref="COL41" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL89" populated="true" UUID="5a1b18bb-22c3-4be3-b76f-bde4d18143be" autoIncrement="false" defaultValue="" name="quantidade_produzida" nullable="1" physicalName="quantidade_produzida" precision="0" referenceCount="1" scale="0" source-column-ref="COL42" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL90" populated="true" UUID="8cc1fe1e-ebfc-4d3a-9655-8e3225308de6" autoIncrement="false" defaultValue="" name="area_em_producao" nullable="1" physicalName="area_em_producao" precision="0" referenceCount="1" scale="0" source-column-ref="COL43" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL91" populated="true" UUID="3008daa1-07a8-435e-9baf-8902e95ed20f" autoIncrement="false" defaultValue="" name="area_em_formacao" nullable="1" physicalName="area_em_formacao" precision="0" referenceCount="1" scale="0" source-column-ref="COL44" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL92" populated="true" UUID="ef794d7a-ef10-452f-91c0-cd19bcdca636" autoIncrement="false" defaultValue="" name="area_colhida" nullable="1" physicalName="area_colhida" precision="0" referenceCount="1" scale="0" source-column-ref="COL45" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL93" populated="true" UUID="00ee84bd-37fb-4547-ae22-77828a4174d9" autoIncrement="false" defaultValue="" name="area_perdida" nullable="1" physicalName="area_perdida" precision="0" referenceCount="1" scale="0" source-column-ref="COL46" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL94" populated="true" UUID="c7b173b8-a526-4b22-a320-f460548173f0" autoIncrement="false" defaultValue="" name="valor_producao" nullable="1" physicalName="valor_producao" precision="0" referenceCount="1" scale="0" source-column-ref="COL47" sourceDataTypeName="float8" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
+     <remarks></remarks>
+    </column>
+    <column id="COL95" populated="true" UUID="14a2fa39-9387-4037-b4c8-57a5f5883269" autoIncrement="false" defaultValue="" name="rendimento_medio" nullable="1" physicalName="rendimento_medio" precision="0" referenceCount="1" scale="0" source-column-ref="COL48" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL96" populated="true" UUID="eae7be81-a122-4737-8e71-86d3ab053225" autoIncrement="false" defaultValue="" name="area_irrigada" nullable="1" physicalName="area_irrigada" precision="2" referenceCount="1" scale="0" source-column-ref="COL49" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL97" populated="true" UUID="8f4a0f11-9783-465e-99d1-9ee6522938d3" autoIncrement="false" defaultValue="" name="preco" nullable="1" physicalName="preco" precision="0" referenceCount="1" scale="0" source-column-ref="COL50" sourceDataTypeName="float8" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB853" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB852" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB854" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX98" populated="true" UUID="8176906c-77bf-4791-9a94-6f6662a2f3cf" clustered="false" name="fato_producao_previsoes_pk" physicalName="fato_producao_previsoes_pk" primaryKeyIndex="true" unique="false" >
+    </index>
+   </folder>
+  </table>
+  <relationships>
+   <relationship id="REL99" populated="true" UUID="3e58f0f7-1134-4b94-9c68-f2b85732608f" deferrability="7" deleteRule="3" fk-table-ref="TAB71" fkCardinality="7" identifying="false" name="dim_localizacao_fato_producao_fechado_fk" physicalName="dim_localizacao_fato_producao_fechado_fk" pk-table-ref="TAB53" pkCardinality="2" updateRule="3" >
+   </relationship>
+   <relationship id="REL100" populated="true" UUID="3c428f13-c278-45cd-95d8-bc425350a720" deferrability="7" deleteRule="3" fk-table-ref="TAB85" fkCardinality="7" identifying="false" name="dim_localizacao_fato_producao_previsoes_fk" physicalName="dim_localizacao_fato_producao_previsoes_fk" pk-table-ref="TAB53" pkCardinality="2" updateRule="3" >
+   </relationship>
+   <relationship id="REL101" populated="true" UUID="aa77276c-a696-4c21-a697-b818621c940e" deferrability="7" deleteRule="3" fk-table-ref="TAB85" fkCardinality="7" identifying="false" name="dim_produto_fato_producao_previsoes_fk" physicalName="dim_produto_fato_producao_previsoes_fk" pk-table-ref="TAB60" pkCardinality="2" updateRule="3" >
+   </relationship>
+   <relationship id="REL102" populated="true" UUID="00cb7883-f741-4b4b-8908-da948fe4e9bb" deferrability="7" deleteRule="3" fk-table-ref="TAB71" fkCardinality="7" identifying="false" name="dim_produto_fato_producao_fechado_fk" physicalName="dim_produto_fato_producao_fechado_fk" pk-table-ref="TAB60" pkCardinality="2" updateRule="3" >
+   </relationship>
+   <relationship id="REL103" populated="true" UUID="b5857b03-5592-4221-bca0-9a8bdde275b6" deferrability="7" deleteRule="3" fk-table-ref="TAB71" fkCardinality="7" identifying="false" name="dim_tempo_fato_producao_fechado_fk" physicalName="dim_tempo_fato_producao_fechado_fk" pk-table-ref="TAB66" pkCardinality="2" updateRule="3" >
+   </relationship>
+   <relationship id="REL104" populated="true" UUID="44274879-bbf2-4622-b874-36e7fdfc21f6" deferrability="7" deleteRule="3" fk-table-ref="TAB85" fkCardinality="7" identifying="false" name="dim_tempo_fato_producao_previsoes_fk" physicalName="dim_tempo_fato_producao_previsoes_fk" pk-table-ref="TAB66" pkCardinality="2" updateRule="3" >
+   </relationship>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.GenericDDLGenerator" allow-connection="true"> </ddl-generator>
+ <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB53" x="271" y="194" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB60" x="69" y="345" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB66" x="875" y="284" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB71" x="538" y="76" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB85" x="538" y="333" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL103" pkConnection="0.26506024096385544" fkConnection="0.6567796610169492" rLineColor="0x4c4c4c" pkLabelText="" fkLabelText="" orientation="18"/>
+  <table-link relationship-ref="REL104" pkConnection="0.7469879518072289" fkConnection="0.3220338983050847" rLineColor="0x4c4c4c" pkLabelText="" fkLabelText="" orientation="18"/>
+  <table-link relationship-ref="REL99" pkConnection="0.6068376068376068" fkConnection="0.4406779661016949" rLineColor="0x4c4c4c" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL100" pkConnection="0.7990654205607477" fkConnection="0.3050847457627119" rLineColor="0x4c4c4c" pkLabelText="" fkLabelText="" orientation="36"/>
+  <table-link relationship-ref="REL101" pkConnection="0.52" fkConnection="0.4872881355932203" rLineColor="0x4c4c4c" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL102" pkConnection="0.7981220657276995" fkConnection="0.17372881355932204" rLineColor="0x4c4c4c" pkLabelText="" fkLabelText="" orientation="40"/>
+ </play-pen>
+ <critic-manager>
+  <critic-grouping platformType="Generic" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PrimaryKeyCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.RelationshipMappingTypeCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.EmptyRelationshipCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericSequenceNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetDefaultOnColumnWithNoDefaultCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetNullOnNonNullableColumnCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DuplicateNameCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="DB2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DB2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="H2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.H2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="HSQLDB" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.HSQLDBUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="MySQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLCommentCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="Oracle" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OraclePhysicalNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="PostgreSQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PostgreSQLReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerUnsupportedFeaturesCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2000" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2000UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2005" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2005UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+ </critic-manager>
+ <profiles topNCount="10">
+  </profiles>
+  <olap>
+   <olap-session id="0" db-ref="ppdb">
+    <Schema id="1" name="SipacOlapV2"/>
+   </olap-session>
+  </olap>
+  <olap-gui>
+   <olap-edit-session osession-ref="0">
+    <play-pen zoom="1.0" viewportX="0" viewportY="0">
+    </play-pen>
+   </olap-edit-session>
+  </olap-gui>
+</architect-project>

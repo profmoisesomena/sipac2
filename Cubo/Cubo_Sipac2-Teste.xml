@@ -1,5 +1,5 @@
-<Schema name="Sipac_cubos" measuresCaption="Medidas - Por media">
-  <Cube name="cubo_geral" visible="true" cache="true" enabled="true">
+<Schema name="Sipac_cubos_Teste" measuresCaption="Medidas_Por_media">
+  <Cube name="cubo_geral_Teste" visible="true" cache="true" enabled="true">
     <Table name="fato_producao" schema="public">
     </Table>
     <Dimension type="StandardDimension" visible="true" foreignKey="fid_produto" highCardinality="false" name="Produto">
@@ -36,11 +36,11 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Measure name="Producao (Ton.)" column="quantidade_produzida" datatype="Integer" aggregator="avg" description="Producao_por_tonelada" visible="true">
+    <Measure name="Producao_Ton" column="quantidade_produzida" datatype="Numeric" aggregator="avg" visible="true">
     </Measure>
-    <Measure name="Preco" column="preco" datatype="Integer" aggregator="avg" description="Preco" visible="true">
+    <Measure name="Preco" column="preco" datatype="Numeric" aggregator="avg" visible="true">
     </Measure>
-    <Measure name="Area_plantada (hec.)" column="area_plantada" datatype="Integer" aggregator="avg" visible="true">
+    <Measure name="Area_Plantada_Hec" column="area_plantada" datatype="Numeric" aggregator="avg" visible="true">
     </Measure>
   </Cube>
 </Schema>
