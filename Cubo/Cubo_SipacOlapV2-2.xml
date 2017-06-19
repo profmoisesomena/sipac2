@@ -1,4 +1,4 @@
-<Schema name="Sipac_Cubo_V2">
+<Schema name="Sipac_Cubo_V2-2">
   <Cube name="Cubo_Fechamento" visible="true" cache="true" enabled="true">
     <Table name="fato_producao_fechado" schema="public" alias="Fechamento_Anual">
     </Table>
@@ -34,6 +34,14 @@
         </Level>
       </Hierarchy>
     </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fid_producao" highCardinality="false" name="Area_Irrigada">
+      <Hierarchy visible="true" hasAll="true" primaryKey="id_producao">
+        <Table name="dim_producao" schema="public">
+        </Table>
+        <Level name="Irrigado" visible="true" column="area_irrigada" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
     <Measure name="Producao" column="quantidade_produzida" aggregator="sum" visible="true">
     </Measure>
     <Measure name="Area_em_producao" column="area_em_producao" aggregator="sum" visible="true">
@@ -45,8 +53,6 @@
     <Measure name="Valor_Producao" column="valor_producao" aggregator="sum" visible="true">
     </Measure>
     <Measure name="Rendimento_Medio" column="rendimento_medio" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="Area_Irrigada" column="area_irrigada" aggregator="distinct count" visible="true">
     </Measure>
     <Measure name="Area_Perdida" column="area_perdida" aggregator="sum" visible="true">
     </Measure>
