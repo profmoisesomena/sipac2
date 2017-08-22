@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>ExemploDimensionLookup</name>
+    <name>ExemploDimensionLookup2</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,16 +427,16 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017&#x2f;08&#x2f;15 10&#x3a;14&#x3a;48.665</created_date>
+    <created_date>2017&#x2f;08&#x2f;17 15&#x3a;11&#x3a;34.977</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017&#x2f;08&#x2f;15 10&#x3a;14&#x3a;48.665</modified_date>
+    <modified_date>2017&#x2f;08&#x2f;17 15&#x3a;11&#x3a;34.977</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>OLAP_INPUT</name>
+    <name>OLAP_input</name>
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
@@ -459,42 +459,45 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>OLAP_OUTPUT</name>
-    <server>localhost</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>TesteDimension</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4aa1da379d0c3fd89</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
-      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
     <hop>
       <from>Table input</from>
       <to>Dimension lookup&#x2f;update</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Table input</from>
-      <to>Dimension lookup&#x2f;update 3</to>
       <enabled>Y</enabled>
     </hop>
   </order>
+  <step>
+    <name>Table input</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>OLAP_input</connection>
+    <sql>select ano,max&#x28;mes&#x29;as mes from dim_tempo&#xa;group by ano</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>148</xloc>
+      <yloc>127</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
   <step>
     <name>Dimension lookup&#x2f;update</name>
     <type>DimensionLookup</type>
@@ -507,14 +510,14 @@
       <schema_name/>
     </partitioning>
       <schema/>
-      <table>dim_tempo_lookup</table>
-      <connection>OLAP_OUTPUT</connection>
+      <table>dim_tempo_max</table>
+      <connection>OLAP_input</connection>
       <commit>100</commit>
       <update>Y</update>
       <fields>
         <key>
-          <name>mesano</name>
-          <lookup>mesano</lookup>
+          <name>ano</name>
+          <lookup>ano</lookup>
         </key>
         <date>
           <name/>
@@ -526,13 +529,8 @@
           <lookup>mes</lookup>
           <update>Insert</update>
         </field>
-        <field>
-          <name>ano</name>
-          <lookup>ano</lookup>
-          <update>Insert</update>
-        </field>
         <return>
-          <name>pkdl_tempo</name>
+          <name>pkdl_time</name>
           <rename/>
           <creation_method>autoinc</creation_method>
           <use_autoinc>Y</use_autoinc>
@@ -556,106 +554,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Table input</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>OLAP_INPUT</connection>
-    <sql>SELECT&#xa;  mesano&#xa;, mes&#xa;, ano&#xa;FROM dim_tempo&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>144</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Dimension lookup&#x2f;update 3</name>
-    <type>DimensionLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <schema/>
-      <table>dim_tempo_anomes</table>
-      <connection>OLAP_OUTPUT</connection>
-      <commit>100</commit>
-      <update>Y</update>
-      <fields>
-        <key>
-          <name>mes</name>
-          <lookup>mes</lookup>
-        </key>
-        <key>
-          <name>ano</name>
-          <lookup>ano</lookup>
-        </key>
-        <date>
-          <name/>
-          <from>date_from</from>
-          <to>date_to</to>
-        </date>
-        <field>
-          <name>mesano</name>
-          <lookup>mesano</lookup>
-          <update>Insert</update>
-        </field>
-        <return>
-          <name>pkdl_time</name>
-          <rename/>
-          <creation_method>tablemax</creation_method>
-          <use_autoinc>N</use_autoinc>
-          <version>version</version>
-        </return>
-      </fields>
-      <sequence/>
-      <min_year>1900</min_year>
-      <max_year>2199</max_year>
-      <cache_size>5000</cache_size>
-      <preload_cache>N</preload_cache>
-      <use_start_date_alternative>N</use_start_date_alternative>
-      <start_date_alternative>none</start_date_alternative>
-      <start_date_field_name/>
-      <useBatch>N</useBatch>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>272</xloc>
-      <yloc>208</yloc>
+      <xloc>400</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
