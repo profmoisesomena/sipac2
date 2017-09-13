@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CDADescriptor>
+   <DataSources>
+      <Connection id="Produto" type="sql.jndi">
+         <Jndi>sipac2</Jndi>
+      </Connection>
+      <Connection id="consulta" type="sql.jndi">
+         <Jndi>sipac2</Jndi>
+      </Connection>
+      <Connection id="consulta2" type="sql.jndi">
+         <Jndi>sipac2</Jndi>
+      </Connection>
+      <Connection id="Year" type="sql.jndi">
+         <Jndi>sipac2</Jndi>
+      </Connection>
+      <Connection id="consulta3" type="sql.jndi">
+         <Jndi>sipac2</Jndi>
+      </Connection>
+      <Connection id="GrupoProduto" type="sql.jndi">
+         <Jndi>sipac2</Jndi>
+      </Connection>
+   </DataSources>
+   <DataAccess access="public" connection="Produto" id="Produto" type="sql">
+      <Name>Produto</Name>
+      <Cache duration="3600" enabled="true"/>
+      <Columns/>
+      <Parameters/>
+      <Query><![CDATA[select nome_produto as produto from dim_produto group by nome_produto
+order by nome_produto asc]]></Query>
+   </DataAccess>
+   <DataAccess access="public" connection="consulta" id="consulta" type="sql">
+      <Name>consulta</Name>
+      <Cache duration="3600" enabled="true"/>
+      <Columns/>
+      <Parameters>
+         <Parameter default="Produto" name="Produto" type="String"/>
+      </Parameters>
+      <Query><![CDATA[select nome_produto as nome, ano, sum(quantidade_produzida) as quantidade from fato_producao_fechado ff
+inner join dim_localizacao dl
+on(dl.id_municipio = ff.fid_municipio)
+inner join dim_produto dp
+on(dp.id_produto = ff.fid_produto)
+inner join dim_tempo dt
+on(dt.mesano = ff.fid_data)
+where nome_produto = ${Produto}
+group by  nome_produto, ano
+order by ano asc]]></Query>
+   </DataAccess>
+   <DataAccess access="public" connection="consulta2" id="consulta2" type="sql">
+      <Name>consulta2</Name>
+      <Cache duration="3600" enabled="true"/>
+      <Columns/>
+      <Parameters>
+         <Parameter default="Year" name="Year" type="IntegerArray"/>
+      </Parameters>
+      <Query><![CDATA[select nome_grupo as nome, sum(quantidade_produzida) as quantidade from fato_producao_fechado ff
+inner join dim_localizacao dl
+on(dl.id_municipio = ff.fid_municipio)
+inner join dim_produto dp
+on(dp.id_produto = ff.fid_produto)
+inner join dim_tempo dt
+on(dt.mesano = ff.fid_data)
+where ano = ${Year}
+group by  nome_grupo
+order by nome_grupo asc]]></Query>
+   </DataAccess>
+   <DataAccess access="public" connection="Year" id="Year" type="sql">
+      <Name>Year</Name>
+      <Cache duration="3600" enabled="true"/>
+      <Columns/>
+      <Parameters/>
+      <Query><![CDATA[select ano as year from dim_tempo 
+group by ano
+order by ano asc]]></Query>
+   </DataAccess>
+   <DataAccess access="public" connection="consulta3" id="consulta3" type="sql">
+      <Name>consulta3</Name>
+      <Cache duration="3600" enabled="true"/>
+      <Columns/>
+      <Parameters>
+         <Parameter default="Year" name="Year" type="IntegerArray"/>
+         <Parameter default="GrupoProduto" name="GrupoProduto" type="String"/>
+      </Parameters>
+      <Query><![CDATA[select nome_produto as nome, sum(quantidade_produzida) as quantidade from fato_producao_fechado ff
+inner join dim_localizacao dl
+on(dl.id_municipio = ff.fid_municipio)
+inner join dim_produto dp
+on(dp.id_produto = ff.fid_produto)
+inner join dim_tempo dt
+on(dt.mesano = ff.fid_data)
+where ano = ${Year}
+and nome_grupo = ${GrupoProduto}
+group by  nome_produto
+order by nome_produto asc]]></Query>
+   </DataAccess>
+   <DataAccess access="public" connection="GrupoProduto" id="GrupoProduto" type="sql">
+      <Name>GrupoProduto</Name>
+      <Cache duration="3600" enabled="true"/>
+      <Columns/>
+      <Parameters/>
+      <Query><![CDATA[select nome_grupo from dim_produto group by nome_grupo order by nome_grupo asc]]></Query>
+   </DataAccess>
+</CDADescriptor>
